@@ -1,0 +1,42 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+    <title>Navigation</title>
+</head>
+<body>
+<div th:fragment="navigation">
+    <div id="mySidebar" class="sidebar">
+        <div id="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+            <span><a href="/photosoverview" >Photoshop</a></span>
+            <span sec:authorize="isAuthenticated()"><a style="font-weight: bold" th:href="@{/logout}">Logout</a> </span>
+            <span><a class="item" th:href="@{/login}" sec:authorize="isAnonymous()">Login</a>  </span>
+
+            <div class="text-center">
+                <a sec:authorize="isAnonymous()" href="/login">Login</a>
+                <a sec:authorize="isAuthenticated()" href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.getElementById("openBtn").style.display = "block";
+        }
+
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "300px";
+            document.getElementById("main").style.marginLeft= "300px";
+            document.getElementById("openBtn").style.display = "none";
+
+
+        }
+    </script>
+
+</div>
+</body>
+</html>
